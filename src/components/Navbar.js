@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 
 export default function Navbar() {
     const [showSidebar, setShowSideBar]= useState(false)
+
     const links = [
         {
             name: "Home",
@@ -22,8 +23,10 @@ export default function Navbar() {
             path: "/settings",
             icon: faCog
         }
-
     ]
+    function closeSidebar(){
+        setShowSideBar (false)
+    }
     return (
         <>
         <div className="navbar container">
@@ -34,14 +37,18 @@ export default function Navbar() {
                 ))}
     
             </div>
-            <div onClick= {()=> setShowSideBar(!showSidebar)}className={showSidebar ? "sidebar-btn active" :"sidebar-btn"}>
+            <div  onClick= {()=> setShowSideBar(true)}className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
              <div className="bar"></div>
              <div className="bar"></div>
              <div className="bar"></div>
             </div>
+{/*         
+<div onClick= {()=> setShowSideBar(true)}className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
 
+</div> */}
         </div>
-       <Sidebar links={links}/>
+        {showSidebar && <Sidebar links={links} close={closeSidebar} />}
+       
         </>
 
 
