@@ -26,3 +26,32 @@ const ResultsPage = () => {
   if (loading) {
     return <div className="text-center">Loading...</div>;
   }
+  return (
+    <div>
+        <Navbar/>
+        <br /> <br />
+    <div className="bg-gray-50 min-h-screen">
+      <div className="container mx-auto p-6">
+        <h1 className="text-3xl font-semibold text-gray-900 mb-8">Search Results</h1>
+ 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {searchResults.map((meal) => (
+            <div key={meal.idMeal} className="bg-white p-4 rounded-lg shadow-lg cursor-pointer">
+              <Link to={`/recipe/${meal.idMeal}`}>
+                <img
+                  src={meal.strMealThumb}
+                  alt={meal.strMeal}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h2 className="text-xl font-semibold text-gray-800">{meal.strMeal}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    </div>
+  );
+};
+ 
+export default ResultsPage;
