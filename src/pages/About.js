@@ -1,10 +1,12 @@
 import React from 'react';
-import Navbar from '../componenet/Navbar';
+import Navbar from '../components/Navbar';
+
 
 const About = () => {
   return (
-    <div className="pt-16"> {/* Add padding-top here */}
-      <Navbar />
+    <div>
+      <Navbar/>
+    <div className="pt-2">
       <div className="container mx-auto p-6">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
           About Foodies Corner
@@ -25,6 +27,7 @@ const About = () => {
           Thank you for being a part of Foodies Corner. Here, we’re not just about cooking – we’re about creating moments, making memories, and celebrating the beauty of food, one recipe at a time.
         </p>
       </div>
+    </div>
     </div>
   );
 };

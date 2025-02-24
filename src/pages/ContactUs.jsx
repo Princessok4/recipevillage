@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from '../componenet/NavBar';
+import Navbar from '../components/Navbar';
+
 
 const teamMembers = [
   {
@@ -96,11 +97,43 @@ const teamMembers = [
   },
 
   {
-    name: 'Alaegbu Ugochukwu',
+    name: 'Lawal Abudullah',
     role: 'Backend Developer',
-    email: 'Ugooalaegbu@gmail.com',
-    phone: '08108651252',
-    image: '/images/Ugo.png'
+    email: 'lawalabdullah28@gmail.com',
+    phone: '08127315101',
+    image: '/images/Abdul.jpg'
   },
 
 ];
+const ContactUs = () => {
+  return (
+    <div>
+        <Navbar/>
+    <div className="bg-gray-50 min-h-screen">
+      <div className="container mx-auto p-6">
+        <h1 className="text-4xl font-semibold text-center text-gray-900 mb-12">Contact Us</h1>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-24 h-24 object-cover rounded-full mx-auto mb-4"
+              />
+              <h2 className="text-xl font-semibold text-gray-800">{member.name}</h2>
+              <p className="text-gray-600">{member.role}</p>
+              <div className="mt-4">
+                <p className="text-gray-800 font-medium">Email: <a href={`mailto:${member.email}`} className="text-indigo-600 hover:underline">{member.email}</a></p>
+                <p className="text-gray-800 font-medium">Phone: <span>{member.phone}</span></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactUs;

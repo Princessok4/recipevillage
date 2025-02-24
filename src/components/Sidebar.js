@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
  
 export default function Sidebar({ links, close }) {
   return (
@@ -9,15 +10,15 @@ export default function Sidebar({ links, close }) {
     >
       <div className="mt-16">
         {links.map((link, index) => (
-          <a
-            href="#!"
+          <Link
+            to={link.path}
             key={link.name}
             className="flex items-center p-4 text-gray-900 text-lg border-l-4 border-transparent hover:bg-gray-100 hover:border-pink-600 transition-all duration-200"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <FontAwesomeIcon icon={link.icon} className="mr-3" />
             {link.name}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

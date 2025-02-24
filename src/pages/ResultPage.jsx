@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import Navbar from '../componenet/NavBar';
+import Navbar from '../components/Navbar';
+import SearchPage from '../components/SearchPage';
+
  
 const ResultsPage = () => {
   const location = useLocation();
@@ -29,7 +31,8 @@ const ResultsPage = () => {
   return (
     <div>
         <Navbar/>
-        <br /> <br />
+        <br />
+        <SearchPage/>
     <div className="bg-gray-50 min-h-screen">
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-semibold text-gray-900 mb-8">Search Results</h1>
