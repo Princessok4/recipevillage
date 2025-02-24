@@ -1,7 +1,8 @@
  import React, { useEffect, useState } from 'react';
   import { useParams, useNavigate } from 'react-router-dom';
-  import Navbar from '../componenet/NavBar';
-  import SearchPage from '../componenet/SearchPage';
+import Navbar from '../components/Navbar';
+import SearchPage from '../components/SearchPage';
+ 
    
   const RecipeDetails = () => {
     const { category } = useParams();
@@ -43,8 +44,8 @@
    
     return (
       <div>
-        <Navbar />
-        <br /> <br /> <br />
+        <Navbar/>
+        <br />
         <SearchPage/>
         <div className="container mx-auto p-4">
           <h1 className="text-3xl font-semibold text-left mb-8 text-gray-900">Recipes for {category}</h1>

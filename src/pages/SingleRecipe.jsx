@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../componenet/NavBar';
+import Navbar from '../components/Navbar';
+import SearchPage from '../components/SearchPage';
+
  
 const RecipeDetailPage = () => {
   const { idMeal } = useParams();
@@ -37,8 +39,9 @@ const RecipeDetailPage = () => {
  
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Navbar />
-      <br /> <br /> <br />
+      <Navbar/>
+      <br /> 
+      <SearchPage/>
       <div className="container mx-auto p-6">
         {/* Recipe Title */}
         <h1 className="text-4xl font-semibold text-left text-gray-900 mb-8">{recipe.strMeal}</h1>
