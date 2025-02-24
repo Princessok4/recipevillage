@@ -1,108 +1,53 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { faHome, faList, faCog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Sidebar from "./Sidebar";
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu toggle
+export default function Navbar() {
+  const [showSidebar, setShowSideBar] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const links = [
+    { name: "Home", path: "/", icon: faHome },
+    { name: "Recipes", path: "/recipes", icon: faList },
+    { name: "About", path: "/about", icon: faCog },
+  ];
+
+  function closeSidebar() {
+    setShowSideBar(false);
+  }
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md p-4 fixed w-full top-0 left-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo Section */}
-        <Link to="/" className="text-2xl font-bold hover:text-gray-300 transition duration-300">
-          Recipe Village
-        </Link>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8">
-          <Link
-            to="/"
-            className="text-lg hover:text-gray-300 transition duration-300"
-          >
-            Home
-          </Link>
-          <Link
-            to="/recipes"
-            className="text-lg hover:text-gray-300 transition duration-300"
-          >
-            Recipes
-          </Link>
-          <Link
-            to="/about"
-            className="text-lg hover:text-gray-300 transition duration-300"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact_us"
-            className="text-lg hover:text-gray-300 transition duration-300"
-          >
-            Contact Us
-          </Link>
-        </div>
-
-        {/* Mobile responsiveness */}
-        <div className="md:hidden flex items-center">
-          <button
-            className="text-white focus:outline-none"
-            onClick={toggleMenu} // Toggle mobile menu
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+    <>
+      <div className="flex justify-between items-center bg-gray-900 shadow-md h-14 px-6 w-full">
+        <a href="#!" className="text-2xl font-bold text-pink-600">
+          F<span className="text-gray-100">oo</span>diesCorner
+        </a>
+        <div className="hidden md:flex space-x-4">
+          {links.map((link) => (
+            <a
+              href={link.path}
+              key={link.name}
+              className="text-gray-600 uppercase text-sm tracking-wider hover:text-pink-600 relative"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              {link.name}
+              <span className="block absolute bottom-[-5px] left-0 w-full h-[2px] bg-pink-600 transform scale-x-0 transition-all duration-200 ease-in-out group-hover:scale-x-100"></span>
+            </a>
+          ))}
+        </div>
+        {/* Mobile sidebar button */}
+        <div
+          onClick={() => setShowSideBar(true)}
+          className={`md:hidden w-8 h-8 relative flex flex-col justify-between items-center space-y-2`}
+        >
+          <div className={`w-full h-[6px] bg-gray-900 rounded-sm transition-all duration-300 ${showSidebar ? "rotate-45 translate-y-2" : ""}`}></div>
+          <div className={`w-full h-[6px] bg-gray-900 rounded-sm ${showSidebar ? "opacity-0" : ""}`}></div>
+          <div className={`w-full h-[6px] bg-gray-900 rounded-sm transition-all duration-300 ${showSidebar ? "-rotate-45 -translate-y-2" : ""}`}></div>
         </div>
       </div>
 
-      {/* Mobile Menu - Only visible when isMenuOpen is true */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-gray-800 p-4 space-y-4">
-          <Link
-            to="/"
-            className="block text-lg text-white hover:text-gray-300 transition duration-300"
-            onClick={toggleMenu} // Close the menu when clicking a link
-          >
-            Home
-          </Link>
-          <Link
-            to="/recipes"
-            className="block text-lg text-white hover:text-gray-300 transition duration-300"
-            onClick={toggleMenu}
-          >
-            Recipes
-          </Link>
-          <Link
-            to="/about"
-            className="block text-lg text-white hover:text-gray-300 transition duration-300"
-            onClick={toggleMenu}
-          >
-            About
-          </Link>
-          <Link
-            to="/contact_us"
-            className="block text-lg text-white hover:text-gray-300 transition duration-300"
-            onClick={toggleMenu}
-          >
-            Contact 
-          </Link>
-        </div>
-      )}
-    </nav>
+      {/* Sidebar Component */}
+      {showSidebar && <Sidebar links={links} close={closeSidebar} />}
+    </>
   );
-};
-
-export default Navbar;
+}
+ 
